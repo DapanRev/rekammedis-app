@@ -95,10 +95,10 @@
     </li>
   </ul>
 
-  <span class="text-white-50ms ms3 w-100 fs-6 py-1">Admin</span>
+  <span class="text-white-50ms ms3 w-100 fs-6 py-1"><?= $_SESSION['ssUserRM'] ?></span>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-        <a href="" class="nav-link px-3">Sign Out</a>
+        <a href="<?= $main_url ?>otentikasi/log-out.php" class="nav-link px-3">Sign Out</a>
     </div>
   </div>
 

@@ -1,11 +1,26 @@
-<?php 
+<?php
+
+session_start();
+
+if (!isset($_SESSION['ssLoginRM'])) {
+  header("location: ../otentikasi/index.php");
+  exit();
+}
+
+$title = "User - Rekam Medis";
 
 require "../config.php";
 require "../rekammedis/header.php";
 require "../rekammedis/navbar.php";
 require "../rekammedis/sidebar.php";
 
-$title = "User - Rekam Medis"
+if ($dataUser['jabatan'] != 3) {
+    echo "<script>
+         alert('Halaman Tidak Ditemukan..');
+         window.location = '../index.php';
+         </script>";
+    exit();
+  }
 
 ?>
 
@@ -38,8 +53,7 @@ $title = "User - Rekam Medis"
                 ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td class="col-1"><img src="../assets/gambar/<?= $user['gambar']?>" alt="user" 
-                    class="img-thumbnail rounded-circle img-fluid"></td>
+                    <td class="col-1"><img src="../assets/gambar/<?= $user['gambar']?>" alt="user" class="img-thumbnail rounded-circle img-fluid"></td>
                     <td><?= $user['username']?></td>
                     <td><?= $user['fullname']?></td>
                     <td>

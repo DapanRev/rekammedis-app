@@ -1,11 +1,21 @@
 <?php 
+session_start();
+
+if (!isset($_SESSION['ssLoginRM'])) {
+  header("location: otentikasi/index.php");
+  exit();
+}
+
+$title = "Dashboard - Rekam Medis";
+
 
 require "config.php";
+
 require "rekammedis/header.php";
 require "rekammedis/navbar.php";
 require "rekammedis/sidebar.php";
 
-$title = "Dashboard - Rekam Medis";
+
 
 ?>
 

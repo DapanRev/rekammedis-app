@@ -1,5 +1,15 @@
 <div class="container-fluid">
   <div class="row">
+    <?php 
+    $uri_path     = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $uri_segments = explode('/', $uri_path);
+    $menu         = $uri_segments[2];
+
+    $userLogin    = $_SESSION['ssUserRM'];
+    $cekUser      = mysqli_query($koneksi, "SELECT * FROM tbl_user WHERE username = '$userLogin'");
+    $dataUser     = mysqli_fetch_assoc($cekUser);
+    
+    ?>
     <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
@@ -9,13 +19,15 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+              <a class="nav-link d-flex align-items-center gap-2 <?= $menu == 'index.php' ? 'active' : null ?>" aria-current="page" href="<?= $main_url ?>">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
                 Dashboard
               </a>
             </li>
+            <?php 
+            if ($dataUser['jabatan'] == 3 ) { ?>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="<?= $main_url ?>user">
+              <a class="nav-link d-flex align-items-center gap-2  <?= $menu == 'user' ? 'active' : null ?>" href="<?= $main_url ?>user">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                 <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 
                 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 
@@ -24,8 +36,9 @@
                 User
               </a>
             </li>
+            <?php } ?>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2  <?= $menu == 'otentikasi' ? 'active' : null ?>" href="<?= $main_url ?>otentikasi/password.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
                 <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8m4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5"/>
                 <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
@@ -41,6 +54,7 @@
           </h6>
 
           <ul class="nav flex-column mb-auto">
+          <?php if ($dataUser['jabatan'] != 2) { ?>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
@@ -50,6 +64,7 @@
                 Data Pasien
               </a>
             </li>
+            <?php } ?>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
