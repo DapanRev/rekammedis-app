@@ -85,6 +85,6 @@ $user      = mysqli_fetch_assoc($queryUser);
   
 <?php
 
-require "rekammedis/footer.php";
+require "../rekammedis/footer.php";
 
 ?>

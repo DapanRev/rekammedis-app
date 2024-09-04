@@ -86,6 +86,6 @@ $title = "Tambah User - Rekam Medis"
   
 <?php
 
-require "rekammedis/footer.php";
+require "../rekammedis/footer.php";
 
 ?>

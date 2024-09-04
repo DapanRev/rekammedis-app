@@ -49,4 +49,9 @@ function uploadGbr($url){
 
 }
 
+function in_date($tgl){
+    $dd = substr($tgl, 8, 2);
+    $dd = substr($tgl, 8, 2);
+}
+
 ?>

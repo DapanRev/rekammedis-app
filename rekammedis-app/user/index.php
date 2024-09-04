@@ -83,6 +83,6 @@ if ($dataUser['jabatan'] != 3) {
   
 <?php
 
-require "rekammedis/footer.php";
+require "../rekammedis/footer.php";
 
 ?>
